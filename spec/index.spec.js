@@ -84,5 +84,15 @@ describe('API', () => {
         .delete(`${birthdaysEndpoint}/0`)
         .expect(204);
     });
+    it('returns with a status code of 400 when given an id out of bounds', () => {
+      return request(app)
+        .delete(`${birthdaysEndpoint}/100`)
+        .expect(400)
+        .then(({ body }) => {
+          expect(body).to.eql({
+            message: 'BAD REQUEST',
+          });
+        });
+    });
   });
 });

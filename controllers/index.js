@@ -7,18 +7,28 @@ module.exports = {
   getBirthdays(req, res) {
     res.status(200).send(data);
   },
-  addBirthday(req, res) {
+  addBirthday(req, res, next) {
     const newPerson = req.body;
     if (newPerson.birthday && newPerson.name) {
       data.push(newPerson);
       res.status(201).send(newPerson);
     } else {
-      res.status(400).send({ message: 'BAD REQUEST' });
+      return next({ status: 400, message: 'BAD REQUEST' });
     }
   },
-  deleteBirthdayById(req, res) {
+  deleteBirthdayById(req, res, next) {
     const id = parseInt(req.params.id);
-    data = data.slice(0, id).concat(data.slice(id + 1));
-    res.status(204).send();
+    if (id >= 0 && id < data.length) {
+      data = data.slice(0, id).concat(data.slice(id + 1));
+      res.status(204).send();
+    } else {
+      next({ status: 400, message: 'BAD REQUEST' });
+    }
+  },
+  /* eslint no-unused-vars: ["error", { "args": "none" }] */
+  errorHandler(err, req, res, next) {
+    const statusCode = err.status || 400;
+    const message = err.message || 'BAD REQUEST';
+    res.status(statusCode).send({ message });
   },
 };
