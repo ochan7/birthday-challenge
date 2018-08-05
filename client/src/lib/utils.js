@@ -2,18 +2,12 @@ import moment from 'moment';
 
 function birthdayIsWithinGivenDuration(dob, duration) {
   const now = moment();
-  const birthday = moment(dob);
-  if (monthAndDateAreLessThanNow(birthday, now)) {
-    birthday.add('years', now.diff(birthday, 'years'));
-    return now.diff(birthday, 'days') <= duration;
-  }
-}
-
-function monthAndDateAreLessThanNow(prev, curr) {
-  return (
-    prev.get('month') <= curr.get('month') &&
-    prev.get('date') <= curr.get('date')
+  const birthDate = new Date(
+    new Date(dob).setFullYear(new Date().getFullYear()),
   );
+  const birthday = moment(birthDate);
+  const diffInDays = birthday.diff(now, 'days');
+  return diffInDays <= duration && diffInDays >= -1;
 }
 
 export function filterBirthdays(duration = 'all', data) {
@@ -24,12 +18,9 @@ export function filterBirthdays(duration = 'all', data) {
   } else return data;
 }
 
-export function isDateLessThanNow(prev, curr) {
-  return (
-    curr.getYear() >= prev.getYear() &&
-    curr.getYear() >= prev.getYear() &&
-    curr.getDate() >= prev.getDate()
-  );
+export function isDateLessThanNow(prev) {
+  const curr = new Date().setHours(0, 0, 0, 0);
+  return prev <= curr;
 }
 
 export function formatDate(d) {

@@ -50,6 +50,7 @@ class App extends Component {
                     match.params.period,
                     this.state.data.map((val, id) => ({ ...val, id })),
                   )}
+                  period={match.params.period}
                   handleDelete={this.handleDelete}
                 />
               )}

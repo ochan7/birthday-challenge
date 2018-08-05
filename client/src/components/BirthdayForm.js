@@ -16,8 +16,7 @@ export class BirthdayForm extends React.Component {
   }
   handleDateChange(evt) {
     const enteredDate = new Date(evt.target.value);
-    const presentDate = new Date();
-    if (isDateLessThanNow(enteredDate, presentDate)) {
+    if (isDateLessThanNow(enteredDate)) {
       this.setState({
         birthday: formatDate(enteredDate),
       });
