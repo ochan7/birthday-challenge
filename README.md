@@ -66,13 +66,17 @@ npm run cypress
 ## Technical choices
 When I first saw the challenge I realised that it was really two projects. The first to make a back-end restful API and the second to make a front-end consumer. For the back-end I went with express since I had prior experience with it and in general it is very fast to get up and running with. For testing the API I used mocha, chai and supertest to check that I was getting the right responses and status codes.
 
-For the front-end I decided to go with react since I wanted to build reusable dynamic components and react is built around a component based architecture. I used create react app to quickly get boilerplate code. I had prior experience working with react however I hadn't done any testing for front-end applications before but after having been following some recent trends I decided to go with cypress for the end to end testing due to its simple installation and very quick setup.
+For the front-end I decided to go with react since I wanted to build reusable dynamic components and react is built around a component based architecture. I used create react app to quickly get boilerplate code. I had prior experience working with react however I hadn't done any testing for front-end applications before but after having been following some recent trends I decided to go with cypress for the end to end testing due to its simple installation and very quick setup. I used react-router in order to get some internal routing for the pages to show the different ui components easily based on the route.
 
 I also decided to use eslint to keep the linting of files consistent and help to reduce errors.
 
 ## Trade-offs
-With any project there are always some trade-offs. The back-end was made to be very light in the sense that it doesn't deal with too much business logic, I did this in order to get the API built as quickly as possible. I implemented some basic error handling like when deleting a birthday that the id was valid, however I would have liked to add a lot more error handling but decided time would be better spent working on the front-end. The front-end deals with things like sorting the dates
+With any project there are always some trade-offs. The back-end was made to be very light in the sense that it doesn't deal with too much business logic, I did this in order to get the API built as quickly as possible. I implemented some basic error handling like when deleting a birthday that the id was valid, however I would have liked to add a lot more error handling but decided time would be better spent working on the front-end. The front-end deals with things like sorting the dates everytime the list of birthdays changes, this was the fastest way to quickly get the dates in order for listing the dates however if the list of dates grows very large then this would likely need to be changed and moved into the back-end.
 
+There was also the trade-off between styling and functionality, in all honesty css is not my greatest strength and I decided to keep the styling minimal in order to achieve most of the functionality.
+
+## If I did it again...
+On reflection if I attempted this challenge again I would have prioritised the front-end section more. The actual API and back-end logic is very simple and I probably spent too much time on the back-end which would have been better spent on the front-end. I would have also chosen to use a db instead to store the data instead of in an array to make it more scalable. I'd also would have spent more time on the styling with extra resources to improve the user experience.
 
 ## Built With
 * [moment](https://momentjs.com/)
