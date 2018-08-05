@@ -77,4 +77,12 @@ describe('API', () => {
         .expect(400);
     });
   });
+
+  describe('DELETE api/birthdays/:id', () => {
+    it('returns with a status code of 204 for successful deletion', () => {
+      return request(app)
+        .delete(`${birthdaysEndpoint}/0`)
+        .expect(204);
+    });
+  });
 });

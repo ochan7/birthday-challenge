@@ -16,4 +16,9 @@ module.exports = {
       res.status(400).send({ message: 'BAD REQUEST' });
     }
   },
+  deleteBirthdayById(req, res) {
+    const id = parseInt(req.params.id);
+    data = data.slice(0, id).concat(data.slice(id + 1));
+    res.status(204).send();
+  },
 };
