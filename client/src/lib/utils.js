@@ -20,6 +20,7 @@ export function filterBirthdays(duration = 'all', data) {
 
 export function isDateLessThanNow(prev) {
   const curr = new Date().setHours(0, 0, 0, 0);
+  prev = new Date(prev).setHours(0,0,0,0);
   return prev <= curr;
 }
 

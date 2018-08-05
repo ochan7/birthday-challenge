@@ -1,5 +1,9 @@
 module.exports = [
   {
+    name: 'Zoey Schmultz',
+    birthday: '1990-08-12',
+  },
+  {
     name: 'John Doe',
     birthday: '1981-08-02',
   },
