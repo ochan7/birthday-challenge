@@ -63,8 +63,19 @@ If you wish the to see UI whilst also being tested you can alternatively run
 npm run cypress
 ```
 
-##
+## Technical choices
+When I first saw the challenge I realised that it was really two projects. The first to make a back-end restful API and the second to make a front-end consumer. For the back-end I went with express since I had prior experience with it and in general it is very fast to get up and running with. For testing the API I used mocha, chai and supertest to check that I was getting the right responses and status codes.
+
+For the front-end I decided to go with react since I wanted to build reusable dynamic components and react is built around a component based architecture. I used create react app to quickly get boilerplate code. I had prior experience working with react however I hadn't done any testing for front-end applications before but after having been following some recent trends I decided to go with cypress for the end to end testing due to its simple installation and very quick setup.
+
+I also decided to use eslint to keep the linting of files consistent and help to reduce errors.
+
+## Trade-offs
+With any project there are always some trade-offs. The back-end was made to be very light in the sense that it doesn't deal with too much business logic, I did this in order to get the API built as quickly as possible. I implemented some basic error handling like when deleting a birthday that the id was valid, however I would have liked to add a lot more error handling but decided time would be better spent working on the front-end. The front-end deals with things like sorting the dates
+
+
 ## Built With
+* [moment](https://momentjs.com/)
 * [react](https://reactjs.org/)
 * [cypress](https://www.cypress.io/)
 * [supertest](https://github.com/visionmedia/supertest)
