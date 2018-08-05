@@ -1,8 +1,26 @@
 .header {
   text-align: center;
 }
-.list {
+.header li {
+  display: inline-block;
+  margin: 10px;
+}
+li {
   list-style: none;
   text-align: center;
+}
+.list {
   margin: 10px;
+  padding: 3px;
+  outline: 1px solid black;
+}
+
+.form {
+  text-align: center;
+}
+
+.text-input {
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
 }
