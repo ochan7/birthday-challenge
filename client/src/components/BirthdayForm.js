@@ -21,14 +21,15 @@ export class BirthdayForm extends React.Component {
       this.setState({
         birthday: formatDate(enteredDate),
       });
+    } else {
+      this.setState({
+        birthday: '',
+      });
     }
   }
   render() {
     return (
-      <form
-        className="form"
-        onSubmit={() => this.props.handleSubmit(this.state)}
-      >
+      <form className="form" onSubmit={evt => evt.preventDefault()}>
         <input
           className="text-input"
           type="text"
@@ -39,8 +40,18 @@ export class BirthdayForm extends React.Component {
         <input
           className="date-picker"
           type="date"
+          value={this.state.birthday}
           onChange={this.handleDateChange}
         />
+        <button
+          onClick={() => {
+            this.props.handleSubmit(this.state);
+            this.setState({ name: '', birthday: '' });
+          }}
+          disabled={this.state.name === '' || this.state.birthday === ''}
+        >
+          Submit
+        </button>
       </form>
     );
   }
