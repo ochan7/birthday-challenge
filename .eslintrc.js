@@ -1,22 +1,25 @@
 module.exports = {
-  extends: ["eslint:recommended", "prettier"], // extending recommended config and config derived from eslint-config-prettier
-  plugins: ["prettier"], // activating esling-plugin-prettier (--fix stuff)
+  extends: ["eslint:recommended", "prettier", "plugin:react/recommended"],
+  plugins: ["prettier", "react"], 
   rules: {
     "prettier/prettier": [
-      // customizing prettier rules (unfortunately not many of them are customizable)
       "error",
       {
         singleQuote: true,
         trailingComma: "all"
       }
     ],
-    eqeqeq: ["error", "always"] // adding some custom ESLint rules
+    eqeqeq: ["error", "always"] 
   },
   env: {
     es6: true,
-    node: true
+    node: true,
+    brow
   },
   parserOptions: {
-    ecmaVersion: 6
+    ecmaVersion: 6,
+    ecmaFeatures: {
+      jsx: true
+    }
   }
 };
