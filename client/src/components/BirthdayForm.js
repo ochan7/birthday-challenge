@@ -42,7 +42,7 @@ export class BirthdayForm extends React.Component {
           value={this.state.birthday}
           onChange={this.handleDateChange}
         />
-        <button
+        <button className="submit-btn"
           onClick={() => {
             this.props.handleSubmit(this.state);
             this.setState({ name: '', birthday: '' });

@@ -11,7 +11,9 @@ const BirthdayItem = props => (
         {new Date().getFullYear() - new Date(props.birthday).getFullYear()}
       </p>
     )}
-    <button onClick={() => props.handleDelete(props.id)}>Delete</button>
+    <button className="delete-btn" onClick={() => props.handleDelete(props.id)}>
+      Delete
+    </button>
   </li>
 );
 
