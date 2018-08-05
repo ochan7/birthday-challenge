@@ -39,4 +39,35 @@ describe('API', () => {
         });
     });
   });
+
+  describe('POST api/birthdays', () => {
+    it('returns with a status code of 201', () => {
+      const janeDoe = {
+        name: 'Jane Doe',
+        birthday: '1980-09-01',
+      };
+      return request(app)
+        .post('/api/birthdays')
+        .send(janeDoe)
+        .expect(201)
+        .then(() => request(app).get('/api/birthdays'))
+        .then(({ body }) => {
+          expect(body).to.eql([
+            {
+              name: 'John Doe',
+              birthday: '1981-08-02',
+            },
+            {
+              name: 'Katie Smith',
+              birthday: '1973-05-20',
+            },
+            {
+              name: 'Anna Jackson',
+              birthday: '1993-10-15',
+            },
+            janeDoe,
+          ]);
+        });
+    });
+  });
 });
