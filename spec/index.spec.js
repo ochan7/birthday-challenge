@@ -95,4 +95,17 @@ describe('API', () => {
         });
     });
   });
+
+  describe('GET an unknown route', () => {
+    it('returns with a status code of 404', () => {
+      return request(app)
+        .get('/asdfasdfasdf')
+        .expect(404)
+        .then(({ body }) => {
+          expect(body).to.eql({
+            message: 'PAGE NOT FOUND',
+          });
+        });
+    });
+  });
 });
