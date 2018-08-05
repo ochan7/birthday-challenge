@@ -23,3 +23,22 @@ export function filterBirthdays(duration = 'all', data) {
     return data.filter(d => birthdayIsWithinGivenDuration(d.birthday, 14));
   } else return data;
 }
+
+export function isDateLessThanNow(prev, curr) {
+  return (
+    curr.getYear() >= prev.getYear() &&
+    curr.getYear() >= prev.getYear() &&
+    curr.getDate() >= prev.getDate()
+  );
+}
+
+export function formatDate(d) {
+  const year = d.getFullYear();
+  const month = padZero(d.getMonth() + 1);
+  const date = padZero(d.getDate());
+  return `${year}-${month}-${date}`;
+}
+
+function padZero(num) {
+  return num < 10 ? `0${num}` : num;
+}
