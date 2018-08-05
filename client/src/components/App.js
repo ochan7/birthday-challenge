@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { loadData, submitData } from '../lib/service';
+import { loadData, submitData, deleteData } from '../lib/service';
 import { BirthdayList } from './BirthdayList';
 import { filterBirthdays } from '../lib/utils';
 import { BirthdayHeader } from './BirthdayHeader';
@@ -13,21 +13,26 @@ class App extends Component {
       data: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentDidMount() {
-    loadData()
-      .then(({ data }) =>
-        data.map((val, id) => {
-          val.id = id;
-          return val;
-        }),
-      )
-      .then(data => this.setState({ data }));
+    loadData().then(({ data }) => this.setState({ data }));
   }
 
   handleSubmit(newPerson) {
     submitData(newPerson).then(() =>
       this.setState({ data: [...this.state.data, newPerson] }),
+    );
+  }
+
+  handleDelete(id) {
+    deleteData(id).then(() =>
+      this.setState({
+        data: [
+          ...this.state.data.slice(0, id),
+          ...this.state.data.slice(id + 1),
+        ],
+      }),
     );
   }
   render() {
@@ -43,8 +48,9 @@ class App extends Component {
                 <BirthdayList
                   birthdays={filterBirthdays(
                     match.params.period,
-                    this.state.data,
+                    this.state.data.map((val, id) => ({ ...val, id })),
                   )}
+                  handleDelete={this.handleDelete}
                 />
               )}
             />
