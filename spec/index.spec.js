@@ -2,6 +2,7 @@ const { describe, it } = require('mocha');
 const { expect } = require('chai');
 const request = require('supertest');
 const app = require('../server');
+const birthdaysEndpoint = '/api/birthdays';
 
 describe('API', () => {
   describe('GET api/', () => {
@@ -19,7 +20,7 @@ describe('API', () => {
   describe('GET api/birthdays', () => {
     it('returns with a status code of 200 and an array of data', () => {
       return request(app)
-        .get('/api/birthdays')
+        .get(birthdaysEndpoint)
         .expect(200)
         .then(({ body }) => {
           expect(body).to.eql([
@@ -47,10 +48,10 @@ describe('API', () => {
         birthday: '1980-09-01',
       };
       return request(app)
-        .post('/api/birthdays')
+        .post(birthdaysEndpoint)
         .send(janeDoe)
         .expect(201)
-        .then(() => request(app).get('/api/birthdays'))
+        .then(() => request(app).get(birthdaysEndpoint))
         .then(({ body }) => {
           expect(body).to.eql([
             {
@@ -68,6 +69,12 @@ describe('API', () => {
             janeDoe,
           ]);
         });
+    });
+    it('returns with a status code of 400 when missing birthday or name', () => {
+      return request(app)
+        .post(birthdaysEndpoint)
+        .send({})
+        .expect(400);
     });
   });
 });
