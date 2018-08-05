@@ -14,10 +14,11 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    brow
+    browser: true
   },
   parserOptions: {
-    ecmaVersion: 6,
+    sourceType: "module",
+    ecmaVersion: 2018,
     ecmaFeatures: {
       jsx: true
     }
